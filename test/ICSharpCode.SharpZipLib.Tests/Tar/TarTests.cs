@@ -24,7 +24,13 @@ namespace ICSharpCode.SharpZipLib.Tests.Tar
 		[SetUp]
 		public void Setup()
 		{
+			/*///////// CUSTOM MODIFICATION STARTS / ORIGINAL CODE WAS:
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			/*///////// MODIFIED CODE IS:
+#if !UNITY_2017_1_OR_NEWER // Needs further investigation. Is CodePagesEncodingProvider provided by Unity in any .NET version? Not registering it would cause what trouble? See 11573231.
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
+			/////////// CUSTOM MODIFICATION ENDS
 		}
 
 		/// <summary>
