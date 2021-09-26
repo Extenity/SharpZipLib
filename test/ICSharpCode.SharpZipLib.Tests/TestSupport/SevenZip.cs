@@ -37,7 +37,12 @@ namespace ICSharpCode.SharpZipLib.Tests.TestSupport
 					if (!p.HasExited)
 					{
 						p.Close();
+						/*///////// CUSTOM MODIFICATION STARTS / ORIGINAL CODE WAS:
 						Assert.Warn($"Timed out checking for 7z binary in \"{testPath}\"!");
+						/*///////// MODIFIED CODE IS:
+						// NUnit version used in Unity doesn't support Assert.Warn. Hopefully that will change in future. After removing Debug.LogWarning here, it'll be possible to enable 'No Engine References' in Test assembly configuration for compile time optimization. See 11473232.
+						UnityEngine.Debug.LogWarning($"Timed out checking for 7z binary in \"{testPath}\"!");
+						/////////// CUSTOM MODIFICATION ENDS
 						continue;
 					}
 
@@ -90,7 +95,12 @@ namespace ICSharpCode.SharpZipLib.Tests.TestSupport
 					}
 					if (!p.WaitForExit(2000))
 					{
+						/*///////// CUSTOM MODIFICATION STARTS / ORIGINAL CODE WAS:
 						Assert.Warn("Timed out verifying zip file!");
+						/*///////// MODIFIED CODE IS:
+						// NUnit version used in Unity doesn't support Assert.Warn. Hopefully that will change in future. After removing Debug.LogWarning here, it'll be possible to enable 'No Engine References' in Test assembly configuration for compile time optimization. See 11473232.
+						UnityEngine.Debug.LogWarning("Timed out verifying zip file!");
+						/////////// CUSTOM MODIFICATION ENDS
 					}
 
 					TestContext.Out.Write(p.StandardOutput.ReadToEnd());
@@ -105,7 +115,12 @@ namespace ICSharpCode.SharpZipLib.Tests.TestSupport
 			}
 			else
 			{
+				/*///////// CUSTOM MODIFICATION STARTS / ORIGINAL CODE WAS:
 				Assert.Warn("Skipping file verification since 7za is not in path");
+				/*///////// MODIFIED CODE IS:
+				// NUnit version used in Unity doesn't support Assert.Warn. Hopefully that will change in future. After removing Debug.LogWarning here, it'll be possible to enable 'No Engine References' in Test assembly configuration for compile time optimization. See 11473232.
+				UnityEngine.Debug.LogWarning("Skipping file verification since 7za is not in path");
+				/////////// CUSTOM MODIFICATION ENDS
 			}
 		}
 	}
