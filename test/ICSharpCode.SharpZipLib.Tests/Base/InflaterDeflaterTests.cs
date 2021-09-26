@@ -177,6 +177,18 @@ namespace ICSharpCode.SharpZipLib.Tests.Base
 		[Test]
 		[Category("Base")]
 		[Category("Async")]
+		/////////// CUSTOM MODIFICATION STARTS / ADDED CODE IS:
+		// NUnit version used in Unity doesn't support Async tests. This is a quick hack. Hopefully Unity will add support in future. Then you only have to remove this custom code block and the original code will remain original. See 11373233.
+#if UNITY_2017_1_OR_NEWER
+		public void InflateDeflateZlibAsync_UnitySyncWrapper([Range(0, 9)] int level)
+		{
+			Task.Run(async () =>
+			{
+				await InflateDeflateZlibAsync(level);
+			}).GetAwaiter().GetResult();
+		}
+#endif
+		/////////// CUSTOM MODIFICATION ENDS
 		public async Task InflateDeflateZlibAsync([Range(0, 9)] int level)
 		{
 			await RandomDeflateInflateAsync(100000, level, true);
@@ -248,6 +260,18 @@ namespace ICSharpCode.SharpZipLib.Tests.Base
 		[Test]
 		[Category("Base")]
 		[Category("Async")]
+		/////////// CUSTOM MODIFICATION STARTS / ADDED CODE IS:
+		// NUnit version used in Unity doesn't support Async tests. This is a quick hack. Hopefully Unity will add support in future. Then you only have to remove this custom code block and the original code will remain original. See 11373233.
+#if UNITY_2017_1_OR_NEWER
+		public void InflateDeflateNonZlibAsync_UnitySyncWrapper([Range(0, 9)] int level)
+		{
+			Task.Run(async () =>
+			{
+				await InflateDeflateNonZlibAsync(level);
+			}).GetAwaiter().GetResult();
+		}
+#endif
+		/////////// CUSTOM MODIFICATION ENDS
 		public async Task InflateDeflateNonZlibAsync([Range(0, 9)] int level)
 		{
 			await RandomDeflateInflateAsync(100000, level, false);

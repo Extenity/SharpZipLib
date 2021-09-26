@@ -596,6 +596,18 @@ namespace ICSharpCode.SharpZipLib.Tests.Zip
 		[TestCase(CompressionMethod.BZip2)]
 		[Category("Zip")]
 		[Category("Async")]
+		/////////// CUSTOM MODIFICATION STARTS / ADDED CODE IS:
+		// NUnit version used in Unity doesn't support Async tests. This is a quick hack. Hopefully Unity will add support in future. Then you only have to remove this custom code block and the original code will remain original. See 11373233.
+#if UNITY_2017_1_OR_NEWER
+		public void RoundTripInMemoryAsync_UnitySyncWrapper(CompressionMethod compressionMethod)
+		{
+			Task.Run(async () =>
+			{
+				await RoundTripInMemoryAsync(compressionMethod);
+			}).GetAwaiter().GetResult();
+		}
+#endif
+		/////////// CUSTOM MODIFICATION ENDS
 		public async Task RoundTripInMemoryAsync(CompressionMethod compressionMethod)
 		{
 			var storage = new MemoryStream();
