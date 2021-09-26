@@ -1,0 +1,14 @@
+{
+    "displayName": "SharpZipLib",
+    "name": "com.extenity.sharp-zip-lib",
+    "unity": "2021.2",
+    "version": "1.3.3-preview.1",
+    "description": "Unity friendly SharpZipLib fork that is only minimally modified to be used in Unity. Includes all sources and tests.\n\nSee the original repository for documentation and samples at:\nhttps://github.com/icsharpcode/SharpZipLib",
+    "contributors": [
+      "Can Baycay <can.baycay@gmail.com>"
+    ],
+    "repository": {
+      "url": "https://github.com/Extenity/SharpZipLib.git",
+      "type": "git"
+    }
+  }
